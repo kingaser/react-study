@@ -32,8 +32,7 @@
         const onSubmitForm = (e) => {
           e.preventDefault();
           if (
-            parseInt(this.state.value) ===
-            this.state.first * this.state.second
+            parseInt(value) === first * second
           ) {
             setResult("정답: " + value);
             setFirst(Math.ceil(Math.random() * 9));
@@ -53,7 +52,7 @@
               {first} 곱하기 {second}는?
             </div>
             <form onSubmit={onSubmitForm}>
-              <input ref={inputRef} onChange={onChangeInput} value={this.state.value} />
+              <input ref={inputRef} onChange={onChangeInput} value={value} />
               <button>입력!</button>
             </form>
             <div id="result">{result}</div>
