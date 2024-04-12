@@ -10,7 +10,7 @@ module.exports = {
   },
 
   entry: {
-    app: ['./client'],
+    app: './client',
   }, // 입력
 
   module: {
@@ -23,7 +23,7 @@ module.exports = {
             "@babel/preset-env",
             {
               targets: {
-                browsers: ["> 5% in KR", "last 2 chrome versions"],
+                browsers: ["> 5% in KR"],
               },
               debug: true,
             },
