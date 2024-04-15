@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, createRef} from "react";
 import Try from './Try';
 
 function getNumbers() { // 숫자 네 개를 겹치지 않고 랜덤하게 뽑는 함수
@@ -33,6 +33,7 @@ class NumberBaseballClass extends Component {
         answer: getNumbers(),
         tries: []
       })
+      this.inputRef.current.focus();
     } else { // 답 틀렸으면
       const answerArray = this.state.value.split('').map((v) => parseInt(v));
       let strike = 0;
@@ -46,7 +47,8 @@ class NumberBaseballClass extends Component {
           value: '',
           answer: getNumbers(),
           tries: []
-        })
+        });
+        this.inputRef.current.focus();
       } else {
         for (let i = 0; i < 4; i++) {
           if (answerArray[i] === this.state.answer[i]) {
@@ -70,12 +72,15 @@ class NumberBaseballClass extends Component {
     });
   }
 
+  inputRef = createRef();
+
   render() {
+    const { result, value, tries } = this.state;
     return (
         <>
           <h1>{this.state.result}</h1>
           <form onSubmit={this.onSubmitForm}>
-            <input maxLength={4} value={this.state.value} onChange={this.onChangeInput}/>
+            <input ref={this.inputRef} maxLength={4} value={this.state.value} onChange={this.onChangeInput}/>
           </form>
           <div>시도: {this.state.tries.length}</div>
           <ul>
